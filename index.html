@@ -1,34 +1,34 @@
-<!--
-Student login form project
-Name: Peter Neema
-Student ID: 77366
--->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+
 <meta charset="UTF-8">
 
-<!-- Title must contain name and student ID -->
+<!-- Assignment requirement -->
 <title>Student Login - Your Name - Student ID</title>
+
+<!-- Better modern font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* Reset default styles */
+/* RESET */
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
+font-family:'Inter', sans-serif;
 }
 
-/* Page layout */
+/* PAGE LAYOUT */
+
 body{
 height:100vh;
 display:flex;
 }
 
-/* LEFT SIDE LOGIN PANEL */
+/* LEFT LOGIN PANEL */
 
 .left{
 width:40%;
@@ -40,34 +40,44 @@ align-items:center;
 padding:40px;
 }
 
+/* FORM CONTAINER */
+
 .form-container{
 width:100%;
-max-width:350px;
+max-width:380px;
 }
 
 .form-container h2{
 margin-bottom:10px;
+font-weight:600;
+font-size:28px;
 }
 
 .form-container p{
-margin-bottom:25px;
+margin-bottom:30px;
 color:#ccc;
 }
 
-/* Input styling */
+/* FORM INPUTS */
 
 input{
 width:100%;
 padding:10px;
 margin-top:5px;
-margin-bottom:8px;
+margin-bottom:18px;
 background:none;
 border:none;
 border-bottom:1px solid #555;
 color:white;
+font-size:14px;
 }
 
-/* Error messages */
+input:focus{
+outline:none;
+border-bottom:1px solid #a855f7;
+}
+
+/* ERROR MESSAGES */
 
 .error{
 color:#ff6b6b;
@@ -76,7 +86,7 @@ margin-bottom:10px;
 display:none;
 }
 
-/* Button */
+/* BUTTON */
 
 button{
 width:100%;
@@ -88,41 +98,14 @@ background:linear-gradient(90deg,#7c3aed,#a855f7);
 color:white;
 font-size:16px;
 cursor:pointer;
+transition:0.3s;
 }
 
-/* RIGHT SIDE WELCOME PANEL */
-
-.right{
-width:60%;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-color:white;
-padding:40px;
-
-/* Background image + purple gradient overlay */
-
-background:
-linear-gradient(rgba(139,92,246,0.85), rgba(168,85,247,0.85)),
-url("download.jpg");
-
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-}
-
-.right h1{
-font-size:40px;
-margin-bottom:10px;
-}
-
-.right p{
+button:hover{
 opacity:0.9;
 }
 
-/* Success message */
+/* SUCCESS MESSAGE */
 
 #successMessage{
 display:none;
@@ -132,12 +115,66 @@ color:#22c55e;
 margin-top:20px;
 }
 
+/* RIGHT PANEL */
+
+.right{
+width:60%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:flex-start;
+text-align:left;
+color:white;
+padding:80px;
+
+/* background image + lighter purple overlay */
+
+background:
+linear-gradient(rgba(139,92,246,0.55), rgba(168,85,247,0.55)),
+url("download.jpg");
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+}
+
+/* WELCOME TEXT */
+
+.welcome-title{
+font-size:52px;
+font-weight:700;
+line-height:1.2;
+max-width:500px;
+margin-bottom:20px;
+animation:fadeUp 1.5s ease;
+}
+
+.welcome-sub{
+font-size:18px;
+font-weight:300;
+opacity:0.9;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
 </style>
+
 </head>
 
 <body>
 
-<!-- LEFT LOGIN SECTION -->
+<!-- LEFT LOGIN FORM -->
 
 <div class="left">
 
@@ -146,30 +183,24 @@ margin-top:20px;
 <h2>Student Login</h2>
 <p>Enter your account details</p>
 
-<!-- Login Form -->
 <form id="loginForm">
 
-<!-- First Name -->
 <label>First Name</label>
 <input type="text" id="firstName">
 <div class="error" id="firstNameError">First name required</div>
 
-<!-- Last Name -->
 <label>Last Name</label>
 <input type="text" id="lastName">
 <div class="error" id="lastNameError">Last name required</div>
 
-<!-- Email -->
 <label>Email</label>
 <input type="email" id="email">
 <div class="error" id="emailError">Valid email required</div>
 
-<!-- Password -->
 <label>Password</label>
 <input type="password" id="password">
 <div class="error" id="passwordError">Password must be 6+ characters</div>
 
-<!-- Student ID -->
 <label>Student ID</label>
 <input type="text" id="studentId">
 <div class="error" id="studentIdError">Student ID required</div>
@@ -178,7 +209,6 @@ margin-top:20px;
 
 </form>
 
-<!-- Success Message -->
 <div id="successMessage">
 Login Successful! Welcome to the Student Portal.
 </div>
@@ -187,20 +217,25 @@ Login Successful! Welcome to the Student Portal.
 
 </div>
 
-<!-- RIGHT WELCOME SECTION -->
+<!-- RIGHT SIDE WELCOME PANEL -->
 
 <div class="right">
 
-<h1>Welcome to<br>Student Portal</h1>
-<p>Login to access your account</p>
+<h1 class="welcome-title">
+Welcome to <br>Student Portal
+</h1>
+
+<p class="welcome-sub">
+Login to access your account
+</p>
 
 </div>
 
 <script>
 
 /*
-This script validates the login form
-It prevents submission if fields are invalid
+Form validation script
+Prevents form submission if fields are invalid
 Displays field specific error messages
 */
 
@@ -208,35 +243,33 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
 
 e.preventDefault();
 
-let valid = true;
+let valid=true;
 
-/* Get field values */
+let firstName=document.getElementById("firstName").value.trim();
+let lastName=document.getElementById("lastName").value.trim();
+let email=document.getElementById("email").value.trim();
+let password=document.getElementById("password").value.trim();
+let studentId=document.getElementById("studentId").value.trim();
 
-let firstName = document.getElementById("firstName").value.trim();
-let lastName = document.getElementById("lastName").value.trim();
-let email = document.getElementById("email").value.trim();
-let password = document.getElementById("password").value.trim();
-let studentId = document.getElementById("studentId").value.trim();
+/* FIRST NAME */
 
-/* First Name validation */
-
-if(firstName === ""){
+if(firstName===""){
 document.getElementById("firstNameError").style.display="block";
 valid=false;
 }else{
 document.getElementById("firstNameError").style.display="none";
 }
 
-/* Last Name validation */
+/* LAST NAME */
 
-if(lastName === ""){
+if(lastName===""){
 document.getElementById("lastNameError").style.display="block";
 valid=false;
 }else{
 document.getElementById("lastNameError").style.display="none";
 }
 
-/* Email validation */
+/* EMAIL */
 
 let emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -247,7 +280,7 @@ valid=false;
 document.getElementById("emailError").style.display="none";
 }
 
-/* Password validation */
+/* PASSWORD */
 
 if(password.length<6){
 document.getElementById("passwordError").style.display="block";
@@ -256,7 +289,7 @@ valid=false;
 document.getElementById("passwordError").style.display="none";
 }
 
-/* Student ID validation */
+/* STUDENT ID */
 
 if(studentId===""){
 document.getElementById("studentIdError").style.display="block";
@@ -265,17 +298,14 @@ valid=false;
 document.getElementById("studentIdError").style.display="none";
 }
 
-/* If form is valid */
+/* IF FORM VALID */
 
 if(valid){
 
-// clear form fields
 document.getElementById("loginForm").reset();
 
-// hide form
 document.getElementById("loginForm").style.display="none";
 
-// show success message
 document.getElementById("successMessage").style.display="block";
 
 }
